@@ -26,3 +26,4 @@ src/Token.java
 *.mp3
 *.jpg
 src/core/Token.java
+/bin/
