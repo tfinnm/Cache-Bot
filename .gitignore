@@ -1,3 +1,4 @@
 
 bin/core/Token.class
 src/core/Token.java
+*.class
