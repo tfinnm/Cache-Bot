@@ -17,7 +17,9 @@ public class SystemChannels {
 	
 	public static TextChannel onJoin(Guild g) {
 		
-		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},{"665951159567253529","671436182667657287"},{"703301617004445829","726288125365715035"}};
+		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
+				{"665951159567253529","671436182667657287"},
+				{"703301617004445829","726288125365715035"}};
 		
 		for (String[] t: servers) {
 			if (t[0].equals(g.getId())) {
@@ -28,7 +30,8 @@ public class SystemChannels {
 	}
 	
 	public static boolean logToServer(Guild g, MessageEmbed messageEmbed) {
-		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},{"703301617004445829","726288125365715035"}};
+		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
+				{"703301617004445829","726288125365715035"}};
 		
 		for (String[] t: servers) {
 			if (t[0].equals(g.getId())) {
@@ -40,7 +43,9 @@ public class SystemChannels {
 	}
 	
 	public static boolean updateMemberCount(Guild g) {
-	String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},{"665951159567253529","726509318542852197"}};
+	String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
+			{"665951159567253529","726509318542852197"},
+			{"703301617004445829","726858804150665237"}};
 		
 		for (String[] t: servers) {
 			if (t[0].equals(g.getId())) {
