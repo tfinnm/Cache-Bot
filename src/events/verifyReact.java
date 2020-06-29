@@ -13,7 +13,7 @@ public class verifyReact extends event {
 	@Override
 	public void action(GenericEvent event) {
 		GuildMessageReactionAddEvent e = (GuildMessageReactionAddEvent) event;
-		if (!e.getUser().isBot() && e.getReactionEmote().isEmoji() && e.getReactionEmote().getEmoji().equals("â˜‘ï¸�")) {
+		if (!e.getUser().isBot() && e.getReactionEmote().isEmoji() && e.getReactionEmote().getEmoji().equals("☑️")) {
 			String[][] servers = {{"MSG ID HERE","ROLE ID HERE"},
 					{"726469641966452817","726469840201580575"},
 					{"726865898539057192","726858239945474069"},
