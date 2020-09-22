@@ -12,6 +12,9 @@ public class eventHandler implements EventListener {
 		new userBan();
 		new userUnban();
 		new verifyReact();
+		new hackathonFileSubmit();
+		new messageEdit();
+		new messageRemove();
 	}
 
 	@Override

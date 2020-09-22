@@ -1,6 +1,5 @@
 package commands;
 
-import core.Data;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Message;
@@ -24,9 +23,9 @@ public class Checks {
 		return false;
 	}
 	
-	public static boolean memeMode() {
-		return Data.memeMode;
-	}
+//	public static boolean memeMode() {
+//		return Data.memeMode;
+//	}
 	
 	public static boolean canDelete(Message msg) {
 		if (msg.getMember().hasPermission(Permission.MESSAGE_MANAGE)) return true;

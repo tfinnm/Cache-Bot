@@ -11,17 +11,14 @@ public class SystemChannels {
 	
 	public static final String[] GuildInviteBL = {"723223561283567657","537826156414500866"};
 	
-	public static final TextChannel botdev = Data.jda.getTextChannelById("723223561283567660");
+	public static final TextChannel botdev = launcher.jda.getTextChannelById("723223561283567660");
 	
-	public static final TextChannel blacklist = Data.jda.getTextChannelById("723223561283567660");
+	public static final TextChannel blacklist = launcher.jda.getTextChannelById("723223561283567660");
+	
+	public static final TextChannel hackathon = launcher.jda.getTextChannelById("727609798190825633");
 	
 	public static TextChannel onJoin(Guild g) {
-		
-		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
-				{"665951159567253529","671436182667657287"},
-				{"703301617004445829","726288125365715035"}};
-		
-		for (String[] t: servers) {
+		for (String[] t: Data.joinChannel) {
 			if (t[0].equals(g.getId())) {
 				return g.getTextChannelById(t[1]);
 			}
@@ -30,24 +27,20 @@ public class SystemChannels {
 	}
 	
 	public static boolean logToServer(Guild g, MessageEmbed messageEmbed) {
-		String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
-				{"703301617004445829","726288125365715035"}};
-		
-		for (String[] t: servers) {
+		for (String[] t: Data.logChannel) {
+			System.out.print(t[0]);
 			if (t[0].equals(g.getId())) {
 				g.getTextChannelById(t[1]).sendMessage(messageEmbed).queue();
+				System.out.print("logging!");
 				return true;
 			}
 		}
+		System.out.print("not logging!");
 		return false;
 	}
 	
 	public static boolean updateMemberCount(Guild g) {
-	String[][] servers = {{"GUILD ID HERE","CHANNEL ID HERE"},
-			{"665951159567253529","726509318542852197"},
-			{"703301617004445829","726858804150665237"}};
-		
-		for (String[] t: servers) {
+		for (String[] t: Data.memberCount) {
 			if (t[0].equals(g.getId())) {
 				g.getGuildChannelById(t[1]).getManager().setName("Members: "+g.getMemberCount()).queue();
 				return true;

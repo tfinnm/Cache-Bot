@@ -1,6 +1,5 @@
 package commands;
 
-import java.io.IOException;
 import java.util.List;
 
 import core.Data;
@@ -17,29 +16,19 @@ public class clearBan extends command {
 
 	@Override
 	public void action(Message msg) {
-
+		//TODO: there is duplicate code here that probably doesn't need to be duplicated
 		if (msg.getMentionedMembers().size() > 0) {
 			List<User> mentionedUsers = msg.getMentionedUsers();
 			for (User tempbanuser : mentionedUsers) {
-				if(Data.BL.contains(tempbanuser.getId())) {
-					Data.removeBan(tempbanuser.getId());
-					try {
-						Data.getBans();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+				if(Data.blacklist.get(tempbanuser.getId())!=null) {
+					Data.blacklist.remove(tempbanuser.getId());
 					msg.getChannel().sendMessage("Cleared "+tempbanuser.getAsMention()).queue();
 				}
 			}
 		} else {
 			String tempbanuser = msg.getContentRaw().split(" ")[1];
-			if(Data.BL.contains(tempbanuser)) {
-				Data.removeBan(tempbanuser);
-				try {
-					Data.getBans();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if(Data.blacklist.get(tempbanuser)!=null) {
+				Data.blacklist.remove(tempbanuser);
 				msg.getChannel().sendMessage("Cleared User ID \""+tempbanuser+"\"").queue();
 			}
 		}

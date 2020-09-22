@@ -39,7 +39,8 @@ public class advise extends command {
 			List<User> mentionedUsers = msg.getMentionedUsers();
 			for (User user : mentionedUsers)
 			{
-				Data.addAdvisory(user.getId(),msg.getContentRaw().substring(7+user.getId().length()+5));
+				String[] darr = {msg.getGuild().getId(),msg.getContentRaw().substring(7+user.getId().length()+5)};
+				Data.advisories.put(user.getId(),darr);
 				msg.getChannel().sendMessage("Issued Advisory.").queue();
 
 				MessageEmbed embed = new MessageEmbed(null, "ADVISORY!", "User: "+user.getAsTag()+"\nID: "+user.getId()+"\nServer: "+guild.getName()+"\nFor Reason: "+msg.getContentRaw().substring(7+user.getId().length()+5), null, OffsetDateTime.now(), 0xF40C0C, new Thumbnail(user.getEffectiveAvatarUrl(), null, 128, 128), null, new AuthorInfo("", null, "", null), null, new Footer(settings.netname+" Bot | Powered By Tfinnm Development", settings.logo, null), null, null);

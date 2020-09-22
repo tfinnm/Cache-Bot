@@ -1,6 +1,5 @@
 package events;
 
-import java.io.IOException;
 import java.time.OffsetDateTime;
 
 import core.Data;
@@ -30,12 +29,8 @@ public class userBan extends event {
 		e.getGuild().retrieveBan(e.getUser()).queue((b) -> {
 			r = b.getReason();
 		});
-		Data.addBan(e.getUser().getId(),r);
-		try {
-			Data.getBans();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
+		String[] darr = {e.getGuild().getId(),r};
+		Data.blacklist.put(e.getUser().getId(),darr);
 		
 		MessageEmbed embed = new MessageEmbed(null, "Ban!", "Server: "+e.getGuild().getName()+"\nName: "+e.getUser().getAsTag()+"\nID: "+e.getUser().getId()+"\nReason: "+r, null, OffsetDateTime.now(), 0xF40C0C, new Thumbnail(e.getUser().getEffectiveAvatarUrl(), null, 128, 128), null, new AuthorInfo("", null, "", null), null, new Footer("DSC Bot | Powered By Tfinnm Development", settings.logo, null), null, null);
 		

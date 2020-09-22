@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import core.Data;
 import core.SystemChannels;
+import core.launcher;
 import core.settings;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
@@ -25,7 +25,7 @@ public class servers extends command {
 	@Override
 	public void action(Message msg) {
 		List<Field> cmds = new ArrayList<Field>();
-		for(Guild tempguild: Data.jda.getGuilds()) {
+		for(Guild tempguild: launcher.jda.getGuilds()) {
 			if (!Arrays.asList(SystemChannels.GuildInviteBL).contains(tempguild.getId())) {
 				cmds.add(new Field(tempguild.getName(), "Owner: "+tempguild.getOwner().getAsMention()+"\nInvite: "+tempguild.getDefaultChannel().createInvite().complete().getUrl(), false));
 			}

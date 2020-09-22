@@ -1,6 +1,5 @@
 package commands;
 
-import java.io.IOException;
 import java.util.List;
 
 import core.Data;
@@ -21,25 +20,15 @@ public class clearAdvisory extends command {
 		if (msg.getMentionedMembers().size() > 0) {
 			List<User> mentionedUsers = msg.getMentionedUsers();
 			for (User tempbanuser : mentionedUsers) {
-				if(Data.AL.contains(tempbanuser.getId())) {
-					Data.removeAdvisory(tempbanuser.getId());
-					try {
-						Data.getAdvisories();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+				if(Data.advisories.get(tempbanuser.getId())!=null) {
+					Data.advisories.remove(tempbanuser.getId());
 					msg.getChannel().sendMessage("Cleared "+tempbanuser.getAsMention()).queue();
 				}
 			}
 		} else {
 			String tempbanuser = msg.getContentRaw().split(" ")[1];
-			if(Data.AL.contains(tempbanuser)) {
-				Data.removeAdvisory(tempbanuser);
-				try {
-					Data.getAdvisories();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			if(Data.advisories.get(tempbanuser)!=null) {
+				Data.advisories.remove(tempbanuser);
 				msg.getChannel().sendMessage("Cleared User ID \""+tempbanuser+"\"").queue();
 			}
 		}

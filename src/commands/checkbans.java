@@ -1,6 +1,7 @@
 package commands;
 
 import core.Data;
+import core.launcher;
 import core.settings;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
@@ -22,8 +23,8 @@ public class checkbans extends command {
 	public void action(Message msg) {
 		msg.getChannel().sendTyping().queue();
 		for(Member bantemp: msg.getGuild().getMembers()) {
-			if(Data.BL.contains(bantemp.getId())) {
-				msg.getChannel().sendMessage("Found: "+bantemp.getAsMention()+" For "+Data.BLR.get(Data.BL.indexOf(bantemp.getId()))).queue();
+			if(Data.blacklist.get(bantemp.getId())!=null) {
+				msg.getChannel().sendMessage("Found: "+bantemp.getAsMention()+" For "+Data.blacklist.get(bantemp.getId())[2]+" on "+launcher.jda.getGuildById(Data.blacklist.get(bantemp.getId())[1]).getName()).queue();
 			}
 		}
 		msg.getChannel().sendMessage("DSC Blacklist Check Finished!").queue();

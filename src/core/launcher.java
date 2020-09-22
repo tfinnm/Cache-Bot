@@ -9,10 +9,14 @@ import javax.security.auth.login.LoginException;
 
 import commands.commandHandler;
 import events.eventHandler;
+import net.dv8tion.jda.api.JDA;
 
 public class launcher {
 	
+	public static JDA jda;
+	
 	public static void main(String[] args) {
+		
 		try {
 			eventHandler.loadEvents();
 			commandHandler.loadCommands();

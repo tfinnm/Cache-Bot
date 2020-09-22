@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.Data;
+import core.launcher;
 import core.settings;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
@@ -62,29 +63,28 @@ public class runuser extends command {
 			System.out.print(Badges);
 			cmds.add(new Field(settings.netname+" Badges", Badges,true));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (Data.memeMode) {
-			int c = 0;
-			for(String[] s: Data.bruhCount) {
-				if (s[0].equals(curruser)) {
-					c = Integer.parseInt(s[1]);
-				}
-			}
-			cmds.add(new Field("Bruhs", String.valueOf(c),true));
-		}
+//		if (Data.memeMode) {
+//			int c = 0;
+//			for(String[] s: Data.bruhCount) {
+//				if (s[0].equals(curruser)) {
+//					c = Integer.parseInt(s[1]);
+//				}
+//			}
+//			cmds.add(new Field("Bruhs", String.valueOf(c),true));
+//		}
 		int color = 0x33cc33; 
-		String warnmsg = "User is in good standing with DSC.";
-		if (Data.memeMode) {
-			warnmsg = "User is guilty of warcrimes for eating pizza on pineapple.";
-		}
-		if (Data.BL.contains(curruser)) {
+		String warnmsg = "User is in good standing with "+settings.netname+".";
+//		if (Data.memeMode) {
+//			warnmsg = "User is guilty of warcrimes for eating pizza on pineapple.";
+//		}
+		if (Data.blacklist.get(curruser) != null) {
 			color = 0xF40C0C;
-			warnmsg =  "User has a ban on a "+settings.netname+" member server for "+Data.BLR.get(Data.BL.indexOf(curruser));
-		} else if (Data.AL.contains(curruser)) {
+			warnmsg =  "User has a ban on a "+settings.netname+" member server for "+Data.blacklist.get(curruser)[2]+"\nServer: "+launcher.jda.getGuildById(Data.blacklist.get(curruser)[1]).getName();
+		} else if (Data.advisories.get(curruser) != null) {
 			color = 0xd4af37;
-			warnmsg =  "User has an advisory on a "+settings.netname+" member server for "+Data.ALR.get(Data.AL.indexOf(curruser));
+			warnmsg =  "User has an advisory on a "+settings.netname+" member server for "+Data.advisories.get(curruser)[2]+"\nServer: "+launcher.jda.getGuildById(Data.advisories.get(curruser)[1]).getName();
 		}
 		System.out.println(warnmsg);
 		return new MessageEmbed(null, "User Info", warnmsg, null, null, color, null, null, new AuthorInfo("", null, "", null), null, new Footer(settings.netname+" Bot | Powered By Tfinnm Development", settings.logo, null), null,cmds);
@@ -119,26 +119,26 @@ public class runuser extends command {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			if (Data.memeMode) {
-				int c = 0;
-				for(String[] s: Data.bruhCount) {
-					if (s[0].equals(curruser.getId())) {
-						c = Integer.parseInt(s[1]);
-					}
-				}
-				cmds.add(new Field("Bruhs", String.valueOf(c),true));
-			}
+//			if (Data.memeMode) {
+//				int c = 0;
+//				for(String[] s: Data.bruhCount) {
+//					if (s[0].equals(curruser.getId())) {
+//						c = Integer.parseInt(s[1]);
+//					}
+//				}
+//				cmds.add(new Field("Bruhs", String.valueOf(c),true));
+//			}
 		int color = 0x33cc33; 
 		String warnmsg = "User is in good standing with "+settings.netname+".";
-		if (Data.memeMode) {
-			warnmsg = "User is guilty of warcrimes for eating pizza on pineapple.";
-		}
-		if (Data.BL.contains(curruser.getId())) {
+//		if (Data.memeMode) {
+//			warnmsg = "User is guilty of warcrimes for eating pizza on pineapple.";
+//		}
+		if (Data.blacklist.get(curruser.getId()) != null) {
 			color = 0xF40C0C;
-			warnmsg =  "User has a ban on a "+settings.netname+" member server for "+Data.BLR.get(Data.BL.indexOf(curruser.getId()));
-		} else if (Data.AL.contains(curruser.getId())) {
+			warnmsg =  "User has a ban on a "+settings.netname+" member server for "+Data.blacklist.get(curruser.getId())[2]+"\nServer: "+launcher.jda.getGuildById(Data.blacklist.get(curruser.getId())[1]).getName();
+		} else if (Data.advisories.get(curruser.getId()) != null) {
 			color = 0xd4af37;
-			warnmsg =  "User has an advisory on a "+settings.netname+" member server for "+Data.ALR.get(Data.AL.indexOf(curruser.getId()));
+			warnmsg =  "User has an advisory on a "+settings.netname+" member server for "+Data.advisories.get(curruser.getId())[2]+"\nServer: "+launcher.jda.getGuildById(Data.advisories.get(curruser.getId())[1]).getName();
 		}
 		return new MessageEmbed(null, "User Info", warnmsg, null, null, color, new Thumbnail(curruser.getEffectiveAvatarUrl(), null, 128, 128), null, new AuthorInfo("", null, "", null), null, new Footer(settings.netname+" Bot | Powered By Tfinnm Development", settings.logo, null), null,cmds);
 	}

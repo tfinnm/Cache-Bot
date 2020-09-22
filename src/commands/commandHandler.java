@@ -11,6 +11,7 @@ public class commandHandler {
 		new checkbans();
 		new clearAdvisory();
 		new clearBan();
+		new createMemberCount();
 		new help();
 		new ping();
 		new privacy();
@@ -18,9 +19,12 @@ public class commandHandler {
 		new raid();
 		new unraid();
 		new reload();
+		new removeChannels();
 		new runuser();
 		new serverstats();
 		new servers();
+		new setJoin();
+		new setLog();
 		new stats();
 		new sync();
 	}

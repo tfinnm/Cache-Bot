@@ -23,7 +23,8 @@ public class sync extends command {
 		msg.getChannel().sendTyping().queue();
 		msg.getGuild().retrieveBanList().queue((bans) -> {
 			for(Ban temp: bans) {
-				Data.addBan(temp.getUser().getId(), temp.getReason());
+				String[] darr = {msg.getGuild().getId(),temp.getReason()};
+				Data.blacklist.put(temp.getUser().getId(), darr);
 			}
 		});
 		msg.getChannel().sendMessage("Finished syncing ban list to the "+settings.netname+" Blacklist.").queue();

@@ -1,6 +1,7 @@
 package events;
 
 import commands.commandHandler;
+import data.MessageCache;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.GenericEvent;
@@ -18,7 +19,8 @@ public class messageReceive extends event {
 		MessageReceivedEvent e = (MessageReceivedEvent) event;
 		Message msg = e.getMessage();
 		log(msg);
-		commandHandler.handleMessage(msg);
+		if (!msg.getAuthor().isBot()) MessageCache.cache.addToCache(msg);
+		if (!msg.getAuthor().isBot()) commandHandler.handleMessage(msg);
 	}
 	
 	public void log(Message msg) {
